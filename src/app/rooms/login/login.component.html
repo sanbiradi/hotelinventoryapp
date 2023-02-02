@@ -1,0 +1,13 @@
+<form action="" class="form p-3" (ngSubmit)="login()" id="loginForm">
+    <div class="form-group">
+        <input hinvHover="green" #emailcontrol="ngModel" hinvEmailvalidator type="email" class="form-control" name="username" [(ngModel)]="email" placeholder="email">
+        <div>
+            {{emailcontrol.errors | json}}
+        </div>
+    </div>
+  
+    <div class="form-group">
+        <input hinvHover="blue" type="password" class="form-control" name="username" [(ngModel)]="password" placeholder="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

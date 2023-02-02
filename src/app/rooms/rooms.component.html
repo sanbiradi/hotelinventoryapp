@@ -1,0 +1,59 @@
+<hinv-header></hinv-header>
+<hinv-header></hinv-header>
+<hinv-header></hinv-header>
+<!-- <div [hidden]="isAvailable">
+  <p>Rooms Available: {{ roomsCount }}</p>
+</div>
+{{ rooms?.availableRooms ?? "no rooms available" }} -->
+
+<!-- <div *ngIf="selectedRoom">
+  {{selectedRoom | json}}
+  {{roomsCount}}
+</div> -->
+
+<!-- {{rooms$ | async | json}} 
+it reduce unscribing event code
+by using async
+-->
+<!-- <h1>
+  {{ totalBytes }}
+</h1>
+<h1>{{getError$ | async}}</h1>
+<h1> Number of rooms{{roomsCount$ | async}}</h1> -->
+<router-outlet></router-outlet>
+<div>
+  <button class="btn btn-primary" routerLink="add">Add room</button>
+</div>
+<button class="btn btn-dark mt-4" (click)="toggle()">Toggle</button>
+<br />
+<button class="btn btn-primary mt-4 btn-sm" (click)="editRoom()">
+  edit room
+</button>
+
+<button class="btn btn-danger mt-3 btn-sm" (click)="deleteRoom()">
+  delete room
+</button>
+
+<div *ngIf="message">
+  {{ message }}
+</div>
+{{ priceFilter | json }}
+<div>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="price"
+    [formControl]="priceFilter"
+  />
+</div>
+<div>
+  <hinv-rooms-list
+    [greet]="greetingMessage"
+    [price]="priceFilter.value"
+    [rooms]="roomList"
+    (selectedRoom)="selectRoom($event)"
+    (sayHello)="displayMessage($event)"
+  ></hinv-rooms-list>
+</div>
+
+<router-outlet></router-outlet>

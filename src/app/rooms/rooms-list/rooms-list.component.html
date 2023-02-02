@@ -1,0 +1,47 @@
+<!-- <h1 [innerText]="greet"></h1> -->
+<br />
+Rooms List
+<table class="table table-striped">
+  <tr [ngStyle]="{ color: true ? 'green' : 'red' }">
+    <th scope="col">Index</th>
+    <th scope="col">Even/Odd</th>
+    <th scope="col">Room Number</th>
+    <th scope="col">Room Type</th>
+    <th scope="col">Room Price</th>
+    <th scope="col">Amenities</th>
+    <th scope="col">Check In</th>
+    <th scope="col">Check Out</th>
+    <th scope="col">Select</th>
+  </tr>
+  <tr
+    [ngClass]="e ? 'even' : 'odd'"
+    *ngFor="
+      let room of rooms! | filter : price ;
+      let i = index;
+      let e = even;
+      let o = odd
+    "
+  >
+    <td>{{ i | percent }}</td>
+    <td>{{ e ? "Even" : "Odd" }}</td>
+    <td>{{ room.roomNumber }}</td>
+    <td>{{ room.roomType }}</td>
+    <td>{{ room.price | currency : "USD" }}</td>
+    <td>{{ room.amenities | titlecase }}</td>
+    <!-- lowercase/uppercase -->
+    <td>{{ room.checkinTime | date : "short" }}</td>
+    <td>{{ room.checkoutTime | date : "short" }}</td>
+    <td>
+      <!-- <button class="btn btn-dark btn-sm" (click)="selectRoom(room)" (click)="passMessage(greet)">Select</button>
+      
+       -->
+      <button
+        class="btn btn-primary btn-md"
+        [routerLink]="['/booking', room.roomNumber]"
+      >
+        Book Room
+      </button>
+      <!-- <button class="btn btn-primary btn-md" [routerLink]="['rooms',room.roomNumber]">Book Room</button> -->
+    </td>
+  </tr>
+</table>
